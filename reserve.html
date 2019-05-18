@@ -42,23 +42,23 @@
             <form role="form">
               <div class="form-group">
                 <label for="Name">Name</label>
-                <input type="text" class="form-control" id="" placeholder="">
+                <input type="text" class="form-control" id="name" placeholder="">
               </div>
 
               <div class="form-group">
                 <label for="Phone Number">Phone Number</label>
-                <input type="text" class="form-control" id="" placeholder="">
+                <input type="text" class="form-control" id="phone" placeholder="">
               </div>
 
               <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="text" class="form-control" id="" placeholder="">
+                <input type="text" class="form-control" id="email" placeholder="">
               </div>
 
               <div class="form-group">
                 <label for="Unique ID">Unique ID</label>
-                <input type="text" class="form-control" id="" placeholder="">
-                <button type="submit" class="btn btn-primary submit">Submit</button>
+                <input type="text" class="form-control" id="id" placeholder="">
+                <button type="submit" class="btn btn-primary submit" id="add-btn">Submit</button>
               </div>
             </form>
           </div>
@@ -76,7 +76,28 @@
   </div>
   
   <script type="text/javascript">
-  document.querySelector()
+ document.querySelector("#add-btn").addEventListener("click", function (event) {
+        event.preventDefault();
+        var newCharacter = {
+        name: document.querySelector("#name").value.trim(),
+        role: document.querySelector("#phone").value.trim(),
+        age: document.querySelector("#email").value.trim(),
+        forcePoints: document.querySelector("#id").value.trim()
+      };
+      console.log(newCharacter)
+      });
+      fetch("localhost:3000", {
+        method: "POST",
+        body: JSON.stringify(newCharacter),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("viewtable.html", data);
+        alert("Adding character...");
+      });
   </script>
 
 </body>
